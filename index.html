@@ -1,0 +1,365 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>
+        Patrimonio cultural en el AMB
+    </title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/dark/main.css" />
+    <script src="https://js.arcgis.com/4.23/"></script>
+
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="/index.css" />
+    <!-- 
+    <link rel="stylesheet" href="/css/LayerList.css" />
+    <link rel="stylesheet" href="/css/LineaTemp.css" />
+    <link rel="stylesheet" href="/css/Footer.css" />
+    <link rel="stylesheet" href="/css/Leyenda.css" />
+    <link rel="stylesheet" href="/css/Basemap.css" /> -->
+    <script defer src="/index.js"></script>
+
+</head>
+
+<body>
+    <div id="viewDiv">
+        <!-- <div id="statsContainer">
+            <div class="title">San Francisco buildings</div>
+        </div>
+        <div id="timeContainer" class="esri-widget"></div> -->
+    </div>
+    <div id="titleDiv" class="esri-widget">
+        <div id="titleText">Elementos Patrimoniales en el AMB
+            <a href="http://www.amb.cat" accesskey="4" target="_blank" title="V&eacute;s a la p&agrave;gina principal de l'Àrea Metropolitana de Barcelona. (Tecla d'acc&egrave;s: 4)">
+                <img src="/favicon copy.png" type="image/png" sizes="75" alt="Àrea Metropolitana de Barcelona">
+            </a>
+        </div>
+        <div>Maqueta Visor Cartográfico Web para representar el patrimonio cultural del Área Metropolitana de Barcelona Elaborado por SIET - AMB (Javier Fco Pérez Gómez) javierfperezgomez@gmail.com</div>
+    </div>
+    <div id="paneDiv" class="esri-widget"></div>
+
+    <div id="seasons-filter" class="rotulos_grupo2">
+        <!-- <div class="season-item visible-season" data-season="'Desconeguda'">Desconeguda</div> -->
+        <div class="season-item visible-season" data-season="'Anterior a 1850' OR ETAPA ='1851 - 1920' OR ETAPA = '1921 - 2022' OR ETAPA ='Desconeguda'">Actualidad</div>
+        <div class="season-item visible-season" data-season="'Anterior a 1850' OR ETAPA ='1851 - 1920' OR ETAPA ='Desconeguda'">Anterior a 1930</div>
+        <div class="season-item visible-season" data-season="'Anterior a 1850'">Anterior a 1800</div>
+        <!-- <div class="season-item2 visible-season"></div> -->
+    </div>
+    NULL '1851 - 1920' '1921 - 2022' 'Desconeguda'
+    <div id="rotulos_grupo" class="rotulos_grupo">
+        <span class="rotulos">Anterior a 1800</span>
+        <span class="rotulos">Anterior a 1930</span>
+        <span class="rotulos">Actualidad (2022)</span>
+    </div>
+    <div class="radio-list">
+        <div class="radio-list-container">Masies<img src="/Masies.png" type="image/png" size="5" alt="Àrea Metropolitana de Barcelona"></div>
+        <div class="radio-list-container">Equipaments<img src="/Equipaments.png" type="image/png" size="5" alt="Àrea Metropolitana de Barcelona"></div>
+        <div class="radio-list-container">Industrials<img src="/Industria.png" type="image/png" size="5" alt="Àrea Metropolitana de Barcelona"></div>
+        <div class="radio-list-container">Altres Residencials<img src="/altresResidencials.png" type="image/png" size="5" alt="Àrea Metropolitana de Barcelona"></div>
+    </div>
+
+
+    <!-- <div class="radio-item" data-style="1850"></div>
+            <div class="radio-item" data-style="1920"></div>
+            <div class="radio-item" data-style="2022"></div> -->
+    <!-- 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 
+    <div class="panel-container">
+        <div class="panel-side">
+            <h2>Relat Construcció Metropolitano</h2>
+            <ul id="nyc_graphics">
+                <li>Insertar una breve Descipción&hellip;</li>
+            </ul>
+            <div>Este visor se ha elaborado con el objetivo de representar</div>
+            <div>el patrimonio cultural del Área Metropolitana de Barcelona</div>
+            <div></div>
+            <div>Elaborado por SIET - AMB (Beta) </div>
+
+            <div class="section">
+                <div id="fog"></div>
+                <div id="creditsContent" style="display: none;">
+                    <div id="cred">
+                        <div id="all">
+                            <div id="col">
+                                <h2>Direcció:</h2>
+                                <p>Este visor cartográfico es un proyecto ideado y desarrollado por el Área Metropolitana de Barcelona</p>
+                                <div id="line"></div>
+                                <p>Dirección: <br> <b>SIET AMB</b></p>
+                                <div id="line"></div>
+                                <p>Elaboración cartográfica: <br> <b>Javier Francisco Pérez Gómez</b></p>
+                                <div id="line"></div>
+                                <p><br> <b>//<br>
+                        </b></p>
+                                <div id="line"></div>
+                                <p><br><b></b></p>
+                                <div id="line"></div>
+                                <p><br><b></b></p>
+                            </div>
+
+                            <div id="col">
+                                <h2></h2>
+                                <p><br> <b><a href=""></a> <br><br><br></b>
+                                </p>
+                                <div id="line"></div>
+                                <p>Col·laboradors: <br><b>Laia Molist Pujadas</b></p>
+                                <div id="line"></div>
+                                <p>Programació servidor cartogràfic i website: <br><b> Gerald Kogler <br>i <a href="http://www.300000kms.net">300.000 km/s</a></b></p>
+                            </div>
+
+                            <div id="col">
+                                <h2>Agraïments: </h2>
+                                <b>
+                            <p>Josep Maria Palet</p>
+                            <div id="line"></div>
+                            <p>Júlia Beltran Heredia</p>
+                            <div id="line"></div>
+                            <p>Carme Miró Alaix </p>
+                            <div id="line"></div>
+                            <p>Servei d’Arqueologia de Barcelona</p>
+                            <div id="line"></div>
+                            <p>Infraplan Barcelona S.L. </p>
+                            <div id="line"></div>
+                            <p>Institut Municipal d’Informàtica (IMI) </p>
+                            <div id="line"></div>
+                            <p>Institut Cartogràfic i Geològic de Catalunya (ICGC) </p>
+                            <div id="line"></div>
+                            <p>Arxiu Històric de Barcelona </p>
+                            <div id="line"></div>
+                            <p>Màster de Restauració de Monuments (MRM) </p>
+                            <div id="line"></div>
+                            <p>Institut de Cultura de Barcelona (ICUB) </p>
+                            <div id="line"></div>
+                            <p>Àrea Metropolitana de Barcelona (AMB) </p>
+                            <div id="line"></div>
+                            <p>Barcelona d’Infraestructures Municipals (BIMSA) </p>
+                            <div id="line"></div>
+                            <br>
+                            <br>
+                        </b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="banner">
+                    <a class="logo" href="http://ajuntament.barcelona.cat/museuhistoria/" target="_blank"></a>
+                    <div class="idiomes">
+                        <a href="index.html?lang=cat" data-lang="cat">CAT</a> &nbsp;&nbsp;&nbsp; <a href="index.html?lang=es" data-lang="es">CAS</a> <a href="index.html?lang=en" data-lang="en">&nbsp;&nbsp;&nbsp; EN</a>
+                    </div>
+                </div>
+
+                <div id="interface">
+                    <div id="mainmenu">
+
+                        <div class="leftmenu" id="menu" data-step="1" data-intro="Aquí trobaràs informació del plànol que estàs consultant. Una breu descripció de la època i d'aquells elements més importants." data-position="left" data-highlightClass="firstIntro">
+                            <div id="cartaBcn"> <img class="" src="./images/favicon.png"></div>
+                            <div id="accordion">
+                                <h2></h2>
+                                <div id="scaleline"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="leftmenu">
+                            <div class="button animated infinite flash" id="hideMenus" data-step="2" data-intro="Si prems aquest botó podràs amagar l'anterior menú. Aquesta opció et permetrà navegar aprofitant al màxim el teu monitor." data-position="right"></div>-->
+    <!-- <div class="button" id="hideMenus" data-step="2" data-intro="Si prems aquest botó podràs amagar l'anterior menú. Aquesta opció et permetrà navegar aprofitant al màxim el teu monitor." data-position="right"></div>
+                        </div>
+
+                    </div>
+                    <div class="rightmenu">
+                        <div class="nav">
+                            <ul>
+                                <div class="button" id="share" data-step="7" data-intro="Si creus que aquesta web pot interessar a un amic aquí t'ajudem a compartir-la." data-position="bottom"></div>
+                                <li>
+                                    <div class="button" id="facebook" href="http://www.facebook.com/sharer.php?u=http://ajuntament.barcelona.cat/museuhistoria/cartahistorica/index.html&text=La Carta Històrica de Barcelona es un document que narra la història de Barcelona a través de les cartografies que la descriuen"></div>
+                                </li>
+                                <li>
+                                    <div class="button" id="twitter" href="http://twitter.com/share?text=La Carta Històrica de Barcelona narra la història de la ciutat a través de les cartografies que la descriuen&url=http://ajuntament.barcelona.cat/museuhistoria/cartahistorica/index.html"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="rightmenu">
+                        <div class="nav">
+                            <ul>
+                                <div class="button" id="pencil" data-step="6" data-intro="Amb aquesta eina podràsdibuixar i esborrar sobre la pantalla." data-position="bottom"></div>
+                                <li>
+                                    <div class="button" id="eraser"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="rightmenu">
+                        <div class="nav">
+                            <div class="button" id="zoom" data-step="5" data-intro="Si necessites augmentar la imatge i no te'n surts amb el ratolí utilitza aquest botó." data-position="bottom"></div>
+                        </div>
+                    </div>
+
+                    <div class="rightmenu">
+                        <div class="button" id="current" data-step="4" data-intro="Si prems aquest botó podràs sobreposar un mapa de la Barcelona actual i comparar com s'ha transformat." data-position="bottom"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <div class="section interstitial">
+                <div class="row" style="text-align: center">
+                    <img class="invert logobox" src="./images/favicon.png" style="height: auto;max-width:100px;">
+                </div>
+            </div>
+
+            <div class="section interstitial">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>¿Cómo ha sido el crecimiento del Área Metropolitana de Barcelona?</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>Este visor cartográfico trata de plasmar .....</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <p></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section interstitial ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Bibliografia</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12" id="biblio">Equipamientos
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="section interstitial full">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Descàrregues</h1>
+                    </div>
+                </div>
+
+                <div class="row" id="mapgallery">
+
+                </div>
+
+            </div>
+
+            <div class="section interstitial">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Crèdits</h1>
+                    </div>
+                </div>
+
+                <div id="credits" class="row">
+                    <div class="col-md-4">
+                        <h2>Direcció:</h2>
+                        <p>Este Visor cartográfico es una idea desarrollada por el Área Metropolitana de Barcelona</p>
+                        <div id="line"></div>
+                        <p>Direcció: <br> <b>Teresa Navas</b></p>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="line"></div>
+                        <p>Col·laboradors: <br><b>Universidad Autónoma de Barcelona</b></p>
+                        <div id="line"></div>
+                        <p>Elaboración del Visor Cartográfico: <br><b>Javier Francisco Pérez Gómez<br><a href=""></a></b></p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h2>Agraïments: </h2>
+                        <b>
+                            <p>Pere Manubens</p>
+                            <div id="line"></div>
+                            <p>Paula Esquinas</p>
+                            <div id="line"></div>
+                            <p>Carles Cuadras</p>
+                            <div id="line"></div>
+                            <p>Institut Cartogràfic i Geològic de Catalunya (ICGC) </p>
+                            <div id="line"></div>
+                            <p>Àrea Metropolitana de Barcelona (AMB) </p>
+                            <br>
+                        </b>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <img src="./images/favicon.png" style="height:40px">
+
+                        <p>Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">licencia de Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional</a>.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
+    <!-- </div>
+    <div id="sceneDiv"></div>
+    </div> -->
+</body>
+
+</html>
